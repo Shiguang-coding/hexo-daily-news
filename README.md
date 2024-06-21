@@ -2,7 +2,13 @@
 
 这是一个 Hexo 插件，用于从 [ALapi](ALapi.cn) 获取每日新闻数据并在你的 Hexo 博客中生成新的文章。
 
-**在线预览**：https://blog.shiguang666.eu.org/news/
+**在线预览**
+
+https://blog.shiguang666.eu.org/news/
+
+https://blog.shiguangdev.cn/news/
+
+https://blog.shiguang88.icu/news/
 
 
 
@@ -32,14 +38,16 @@ cnpm install hexo-daily-news --save
 
 将以下配置添加到你的 `_config.yml` 文件中：
 
-复制
-
 ```yaml
 hexo-daily-news:
   enable: true
   apiUrl: 'https://v2.alapi.cn/api/zaobao'
   token: 'your-api-token'
 ```
+
+
+
+如果当天多次执行 `hexo g` ，最好禁用插件，否则会频繁消耗api调用额度，目前免费账户每日请求上限为200条
 
 ## 使用
 
@@ -58,6 +66,10 @@ hexo g
 
 
 插件将从指定的 API 获取最新的新闻数据，将其保存为 `source/_data` 目录中的 JSON 文件，并在 `source/_posts` 目录中生成一个新的 Markdown 文章。
+
+
+
+更多详细介绍详见 [Hexo 博客每天自动生成每日早报文章](https://blog.shiguangdev.cn/2024/06/20/b4d1ca345b31/)
 
 ## 贡献
 
