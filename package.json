@@ -1,6 +1,6 @@
 {
   "name": "hexo-daily-news",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Hexo plugin to fetch and generate daily news posts.",
   "main": "index.js",
   "scripts": {

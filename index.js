@@ -15,19 +15,20 @@ hexo.extend.filter.register('before_generate', async function () {
         return;
     }
 
+    const { config } = hexo;
+    const dailyNewsConfig = config['hexo-daily-news'];
+
+    // 检查是否启用了插件
+    if (!dailyNewsConfig || !dailyNewsConfig.enable) {
+        // log.info("【hexo-daily-news】插件已禁用，跳过执行。");
+        return;
+    }
+
     log.info("【hexo-daily-news】插件开始运行...");
 
-    const { config } = hexo;
-
-    // 使用 hexo.base_dir 获取 Hexo 项目的根目录
     const base_dir = hexo.base_dir;
-    // log.info("Hexo 项目根目录是: ", base_dir);
-
-    const apiUrl = config['hexo-daily-news']?.apiUrl;
-    const token = config['hexo-daily-news']?.token;
-
-    // log.info("API URL: " + apiUrl);
-    // log.info("Token: " + token);
+    const apiUrl = dailyNewsConfig.apiUrl;
+    const token = dailyNewsConfig.token;
 
     try {
         const response = await axios.get(apiUrl, {
@@ -43,11 +44,8 @@ hexo.extend.filter.register('before_generate', async function () {
             const postDate = newsData.date;
             const postDayOfWeek = moment(postDate).format('dddd');
 
-            // 构建 JSON 文件的路径
-            const jsonFilePath = path.join(base_dir, 'source/_data', postDate + '.json');
-            // log.info("【hexo-daily-news】JSON 文件路径: ", jsonFilePath);
+            const jsonFilePath = path.join(base_dir, 'source/_data/','daily_news_'+ postDate + '.json');
 
-            // 检查并创建 `source/_data` 目录
             const dataDirPath = path.join(base_dir, 'source/_data');
             try {
                 await fs.access(dataDirPath);
@@ -56,11 +54,9 @@ hexo.extend.filter.register('before_generate', async function () {
                 log.info("【hexo-daily-news】创建目录: ", dataDirPath);
             }
 
-            // 写入 JSON 文件
             await fs.writeFile(jsonFilePath, JSON.stringify(newsData, null, 2));
             log.info("【hexo-daily-news】每日新闻数据已保存到: ", jsonFilePath);
 
-            // 构建 Markdown 文件的路径
             const postTitle = `【每日早报】-${postDate} - ${postDayOfWeek}`;
             const postContent = `---
 title: ${postTitle}
@@ -91,7 +87,7 @@ cover: ${newsData.head_image}
 </html>`;
 
             const postFilePath = path.join(base_dir, 'source/_posts', `${postTitle}.md`);
-            await fs.writeFile(postFilePath, postContent); // 使用 fs.promises.writeFile 进行异步写入
+            await fs.writeFile(postFilePath, postContent);
 
             log.info('【hexo-daily-news】每日新闻文章已保存到: ', postFilePath);
 
