@@ -12,6 +12,12 @@
 npm install hexo-daily-news --save
 ```
 
+推荐使用 `cnpm` 安装
+
+```bash
+cnpm install hexo-daily-news --save
+```
+
 ## 配置
 
 将以下配置添加到你的 `_config.yml` 文件中：

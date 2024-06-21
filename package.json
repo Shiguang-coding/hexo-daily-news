@@ -14,9 +14,17 @@
   "author": "Shiguang-coding",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.21.1",
-    "fs": "0.0.1-security",
-    "path": "^0.12.7",
-    "moment": "^2.29.1"
-  }
+    "axios": "^1.7.2",
+    "fs": "^0.0.1-security",
+    "moment": "^2.30.1",
+    "path": "^0.12.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shiguang-coding/hexo-daily-news.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Shiguang-coding/hexo-daily-news/issues"
+  },
+  "homepage": "https://github.com/Shiguang-coding/hexo-daily-news#readme"
 }
