@@ -1,0 +1,22 @@
+{
+  "name": "hexo-daily-news",
+  "version": "1.0.0",
+  "description": "A Hexo plugin to fetch and generate daily news posts.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hexo",
+    "plugin",
+    "daily news"
+  ],
+  "author": "Shiguang-coding",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "fs": "0.0.1-security",
+    "path": "^0.12.7",
+    "moment": "^2.29.1"
+  }
+}
